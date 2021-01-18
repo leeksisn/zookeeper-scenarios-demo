@@ -17,14 +17,24 @@ public class ZkUtils {
     private static final ZkClient ZK_CLIENT = new ZkClient(ZKConfig.zkHost);
     private static final Set<String> topicSet = new HashSet<>();
 
-
-    public static void pub(String path, String pullUrl) {
-        // createPersistent(key);
-        createEphemeral(path, pullUrl);
+    /**
+     * 推送消息，
+     *
+     * @param topic   消息的主题
+     * @param pullUrl 拉取的地址
+     */
+    public static void pub(String topic, String pullUrl) {
+        createEphemeral(topic, pullUrl);
     }
 
-    public static void sub(String path, SubListener listener) {
-        ZK_CLIENT.subscribeDataChanges(ZK_PUB_SUB_ROOT2 + path, listener);
+    /**
+     * 订阅消息
+     *
+     * @param topic    消息的主题
+     * @param listener 获取到消息之后的处理事件
+     */
+    public static void sub(String topic, SubListener listener) {
+        ZK_CLIENT.subscribeDataChanges(ZK_PUB_SUB_ROOT2 + topic, listener);
     }
 
     public static void deleteRecursive(String path) {
@@ -46,5 +56,4 @@ public class ZkUtils {
             ZK_CLIENT.createPersistent(ZK_PUB_SUB_ROOT, true);
         }
     }
-
 }

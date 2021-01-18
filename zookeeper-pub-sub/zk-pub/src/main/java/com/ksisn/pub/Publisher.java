@@ -22,8 +22,9 @@ public class Publisher {
     }
 
     public void send(String msg) {
-        // 设置每次请求均含有不同的UUID
+        // 模拟将消息存放到本地PullController的messages集合中
         PullController.messages.addLast(msg);
+        // 设置每次请求均含有不同的UUID
         ZkUtils.pub(topic, PullController.PULL_MSG_URL + "?_id=" + (UUID.randomUUID().toString()));
     }
 }

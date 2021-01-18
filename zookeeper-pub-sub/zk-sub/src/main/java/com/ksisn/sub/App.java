@@ -21,7 +21,7 @@ public class App {
                 System.out.println(latestMsg);
             }
         });
-
+        // 休息10分钟，保证能持续获取消息
         TimeUnit.MINUTES.sleep(10);
     }
 }

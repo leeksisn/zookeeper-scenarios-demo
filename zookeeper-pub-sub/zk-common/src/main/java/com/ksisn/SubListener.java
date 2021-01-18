@@ -15,14 +15,14 @@ import java.util.concurrent.CompletableFuture;
 public abstract class SubListener implements IZkDataListener {
 
     @Override
-    public void handleDataChange(String dataPath, Object o) throws Exception {
+    public void handleDataChange(String dataPath, Object pullUrl) throws Exception {
         HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder(URI.create(o.toString())).GET().build();
+        HttpRequest request = HttpRequest.newBuilder(URI.create(pullUrl.toString())).GET().build();
 
         CompletableFuture<Void> voidCompletableFuture = client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
 
                 .thenApply(HttpResponse::body)
-                // 当响应值之后
+                // 当获取到HTTP响应值之后，调用具体业务进行处理
                 .thenAccept(t -> {
                     afterReceived(t);
                 });
@@ -30,7 +30,7 @@ public abstract class SubListener implements IZkDataListener {
 
     @Override
     public void handleDataDeleted(String s) throws Exception {
-
+        // 空实现
     }
 
     /**
