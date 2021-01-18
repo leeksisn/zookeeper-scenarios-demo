@@ -1,0 +1,29 @@
+server:
+  address: 0.0.0.0
+  port: 7777
+  #tomcat配置
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 200
+    accept-count: 400
+    min-spare-threads: 5
+    max-connections: 400
+    connection-timeout: 60000
+  servlet:
+    context-path: /
+    session:
+      timeout: 36000 #超时时间10个小时
+spring:
+  application:
+    name: zookeeper-pull-server
+  mvc:
+    date-format: yyyy-mm-dd hh:MM:ss
+    async:
+      request-timeout: 60s
+    static-path-pattern: /**
+  # http请求配置
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true

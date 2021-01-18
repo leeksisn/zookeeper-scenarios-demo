@@ -1,5 +1,4 @@
-package com.ksisn.pub;
-
+package com.ksisn;
 import java.util.ResourceBundle;
 
 /**

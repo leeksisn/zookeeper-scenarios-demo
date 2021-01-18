@@ -11,6 +11,7 @@
     <modules>
         <module>zk-sub</module>
         <module>zk-pub</module>
+        <module>zk-common</module>
     </modules>
 
 
